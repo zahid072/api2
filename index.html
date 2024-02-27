@@ -8,8 +8,28 @@
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    .cardBox {
-      
+    /* HTML: <div class="loader"></div> */
+    .loader {
+      --d: 22px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      color: #25b09b;
+      box-shadow:
+        calc(1*var(--d)) calc(0*var(--d)) 0 0,
+        calc(0.707*var(--d)) calc(0.707*var(--d)) 0 1px,
+        calc(0*var(--d)) calc(1*var(--d)) 0 2px,
+        calc(-0.707*var(--d)) calc(0.707*var(--d)) 0 3px,
+        calc(-1*var(--d)) calc(0*var(--d)) 0 4px,
+        calc(-0.707*var(--d)) calc(-0.707*var(--d))0 5px,
+        calc(0*var(--d)) calc(-1*var(--d)) 0 6px;
+      animation: l27 1s infinite steps(8);
+    }
+
+    @keyframes l27 {
+      100% {
+        transform: rotate(1turn)
+      }
     }
   </style>
 </head>
@@ -50,15 +70,20 @@
       <div class="mt-10">
         <h1 class="text-center text-3xl font-bold">Search your phone</h1>
         <div class="mx-auto w-[752px] flex rounded mt-5 bg-[#100f0f0d]">
-          <input id="searchFiled" type="text" class="px-4 py-3 w-full bg-transparent outline-none" placeholder="Search your phone">
+          <input id="searchFiled" type="text" class="px-4 py-3 w-full bg-transparent outline-none"
+            placeholder="Search your phone">
           <button onclick="searchHandle()" class="btn btn-primary">Search</button>
         </div>
       </div>
     </section>
     <!-- card section -->
-    <section  class="mt-8 px-36">
+    <section class="mt-8 px-36">
 
       <div id="allCard" class="grid grid-cols-3 gap-5">
+      </div>
+      <div id="loaderHandle" class="loader mx-auto mt-40 hidden"></div>
+      <div id="showAllContainer" class="w-full hidden ">
+        <button onclick="showAll()" class="btn btn-accent mt-8 text-center mx-auto block">Show All</button>
       </div>
 
     </section>

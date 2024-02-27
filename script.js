@@ -1,18 +1,27 @@
-const loadPhone = async (brands = 'iphone') => {
-  const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${brands}`);
+const loadPhone = async (brands = "iphone") => {
+  const res = await fetch(
+    `https://openapi.programming-hero.com/api/phones?search=${brands}`
+  );
   let datas = await res.json();
-  displayPhone(datas.data)
-  
-} 
-loadPhone()
+  displayPhone(datas.data);
+};
+loadPhone();
 
-const displayPhone = (datas)=>{
-  const container = document.getElementById('allCard');
-  container.innerHTML = ""
-  for(let data of datas){
-   let cardContainer = document.createElement('div');
-   cardContainer.classList.add('card', 'w-96', 'bg-base-100', 'shadow-xl');
-   cardContainer.innerHTML = `
+const displayPhone = (datas) => {
+  const container = document.getElementById("allCard");
+
+  const showAllContainer = document.getElementById("showAllContainer");
+  if (datas.length > 12) {
+    showAllContainer.classList.remove("hidden");
+  } else {
+    showAllContainer.classList.add("hidden");
+  }
+  datas = datas.slice(0, 12);
+  container.innerHTML = "";
+  for (let data of datas) {
+    let cardContainer = document.createElement("div");
+    cardContainer.classList.add("card", "w-96", "bg-base-100", "shadow-xl");
+    cardContainer.innerHTML = `
          <!-- card -->
          
             <figure class="px-10 pt-10">
@@ -27,14 +36,26 @@ const displayPhone = (datas)=>{
               </div>
             </div>
           
-   `
-   container.appendChild(cardContainer)
+   `;
+    container.appendChild(cardContainer);
   }
 
-}
+  handleSearchHandleLoader(false);
+};
 
-const searchHandle = ()=> {
-  const searchFiled = document.getElementById('searchFiled');
+const searchHandle = () => {
+  handleSearchHandleLoader(true);
+  const searchFiled = document.getElementById("searchFiled");
   loadPhone(searchFiled.value);
   searchFiled.value = "";
-}
+};
+
+const handleSearchHandleLoader = (loader) => {
+  const loaderHandler = document.getElementById("loaderHandle");
+
+  if (loader === true) {
+    loaderHandler.classList.remove("hidden");
+  } else {
+    loaderHandler.classList.add("hidden");
+  }
+};
