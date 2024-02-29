@@ -54,7 +54,7 @@
       </div>
     </div>
   </header>
-  <main>
+  <main id="mainContainer">
     <section>
       <div class="text-center space-y-5">
         <h1 class="text-center font-bold mt-5 text-5xl">Apple Iphone 13 Pro Max</h1>
@@ -82,22 +82,17 @@
       <div id="allCard" class="grid grid-cols-3 gap-5">
       </div>
       <div id="loaderHandle" class="loader mx-auto mt-40 hidden"></div>
-      <div id="showAllContainer" class="w-full hidden ">
+      <div id="showAllContainer" class="w-full hidden">
         <button onclick="showAll()" class="btn btn-accent mt-8 text-center mx-auto block">Show All</button>
       </div>
 
     </section>
     <!-- modal -->
     <!-- Open the modal using ID.showModal() method -->
-    <dialog id="seeDetails" class="modal">
-      <div class="modal-box">
-        <h3 class="font-bold text-lg">Hello!</h3>
-        <p class="py-4">Press ESC key or click outside to close</p>
-      </div>
-      <form method="dialog" class="modal-backdrop">
-        <button>close</button>
-      </form>
-    </dialog>
+    <section id="modalContainer">
+
+    </section>
+
   </main>
   <script src="script.js"></script>
 </body>
